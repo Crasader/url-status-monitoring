@@ -36,5 +36,6 @@
 
     npm run dev
 
+-make sure you have php curl package installed
 
 project is ready to be browsed from its root point
