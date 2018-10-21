@@ -3,6 +3,7 @@ import axios from 'axios';
 import SuccessMessage from '../SuccessMessage';
 import ErrorMessage from '../ErrorMessage';
 import Home from '../Home';
+import * as constants from '../../constants';
 
 export default class Add extends Component {
 
@@ -52,7 +53,7 @@ export default class Add extends Component {
 			var accessToken = localStorage.getItem('token');
 			//send post request to add new url
 			return axios({
-					 method: 'post', url: 'http://localhost/icons_task/public/api/v1/urls',
+					 method: 'post', url: constants.API_END_POINT+'urls',
 					 params: url_data,
 					 headers: { 'Authorization': 'Bearer ' + accessToken }
 					}).then(response => {

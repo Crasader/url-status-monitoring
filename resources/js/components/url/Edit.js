@@ -3,6 +3,7 @@ import axios from 'axios';
 import SuccessMessage from '../SuccessMessage';
 import ErrorMessage from '../ErrorMessage';
 import Home from '../Home';
+import * as constants from '../../constants';
 
 export default class Edit extends Component {
 
@@ -32,7 +33,7 @@ export default class Edit extends Component {
 			var accessToken = localStorage.getItem('token');
 			//get url to edit
 			axios({
-					method: 'get', url: 'http://localhost/icons_task/public/api/v1/urls/'+this.props.match.params.id,
+					method: 'get', url: constants.API_END_POINT+'urls/'+this.props.match.params.id,
 					headers: { 'Authorization': 'Bearer ' + accessToken }
 						}).then(response => {
 							//console.log(response.data.success.url);
@@ -71,7 +72,7 @@ export default class Edit extends Component {
 			var accessToken = localStorage.getItem('token');
 			//send post request to add new url
 			return axios({
-					 method: 'patch', url: 'http://localhost/icons_task/public/api/v1/urls/'+this.props.match.params.id,
+					 method: 'patch', url: constants.API_END_POINT+'urls/'+this.props.match.params.id,
 					 params: url_data,
 					 headers: {
 					  'Authorization': 'Bearer ' + accessToken

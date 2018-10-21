@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ErrorMessage from './ErrorMessage';
 import Index from './url/Index';
+import * as constants from '../constants';
 
 export default class Login extends Component {
 
@@ -51,7 +52,7 @@ export default class Login extends Component {
 
 			//send login request to server
 			return axios({
-					 method: 'post', url: 'http://localhost/icons_task/public/api/v1/login',
+					 method: 'post', url: constants.API_END_POINT+'login',
 					 params: user_data
 					}).then(response => {
 						  	localStorage.setItem('token',response.data.success.token);

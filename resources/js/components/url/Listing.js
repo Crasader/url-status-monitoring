@@ -4,6 +4,7 @@ import axios from 'axios';
 import Home from '../Home';
 import SuccessMessage from '../SuccessMessage';
 import ErrorMessage from '../ErrorMessage';
+import * as constants from '../../constants';
 
 export default class Listing extends Component {
 
@@ -25,7 +26,7 @@ export default class Listing extends Component {
 			var accessToken = localStorage.getItem('token');
 			//get result the first time
 			axios({
-					method: 'get', url: 'http://localhost/icons_task/public/api/v1/urls',
+					method: 'get', url: constants.API_END_POINT+'urls',
 					headers: { 'Authorization': 'Bearer ' + accessToken }
 						}).then(response => {
 							//console.log(response.data.success.data);
@@ -40,7 +41,7 @@ export default class Listing extends Component {
 								_this.setState({toggleMessage:false}); 
 							},2000);
 				return axios({
-						 method: 'get', url: 'http://localhost/icons_task/public/api/v1/urls',
+						 method: 'get', url: constants.API_END_POINT+'urls',
 						 headers: { 'Authorization': 'Bearer ' + accessToken }
 						}).then(response => {
 							//console.log(response.data.success.data);
@@ -62,7 +63,7 @@ export default class Listing extends Component {
 	{
 		var accessToken = localStorage.getItem('token');
 		return axios({
-				 method: 'delete', url: 'http://localhost/icons_task/public/api/v1/urls/'+url_id,
+				 method: 'delete', url: constants.API_END_POINT+'urls/'+url_id,
 				 headers: { 'Authorization': 'Bearer ' + accessToken }
 				}).then(response => {
 					  	this.setState({message: 'success'});

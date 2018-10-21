@@ -3,6 +3,7 @@ import axios from 'axios';
 import ErrorMessage from './ErrorMessage';
 import SuccessMessage from './SuccessMessage';
 import Index from './url/Index';
+import * as constants from '../constants';
 
 export default class Register extends Component {
 
@@ -74,7 +75,7 @@ export default class Register extends Component {
 
 			//send login request to server
 			return axios({
-					 method: 'post', url: 'http://localhost/icons_task/public/api/v1/register',
+					 method: 'post', url: constants.API_END_POINT+'register',
 					 params: user_data
 					}).then(response => {
 						  	this.setState({message: 'success'});
