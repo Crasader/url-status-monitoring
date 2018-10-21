@@ -93,6 +93,7 @@ export default class Listing extends Component {
 		            {this.state.message=="success"?<SuccessMessage message="Url Deleted Successfully"/>:null}
 		            {this.state.message=="error"?<ErrorMessage errors={this.state.errors}/>:null}
 		            {this.state.toggleMessage?(<h4> Refreshing.. </h4>):null}
+		            {this.state.urls.length>0?(
 		                <table className="table">
 						  <thead>
 						    <tr>
@@ -124,6 +125,7 @@ export default class Listing extends Component {
 						  }
 						  </tbody>
 						</table>
+						):(<div>There are no urls yet</div>)}
 		            </div>
 		        )
 		        :<Home/>

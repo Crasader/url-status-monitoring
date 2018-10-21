@@ -14,7 +14,7 @@ export default class Index extends Component {
 	            	<div>
 	                	<div>
 	                		<br/>
-	                		URLS
+	                		<h3>URLS</h3>
 	                		<hr/>
 	                		<Link to="/url" className='btn btn-primary'>Listing</Link> &nbsp;
 	                		<Link to="/url/add" className='btn btn-primary'>Add</Link>

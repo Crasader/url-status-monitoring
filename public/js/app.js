@@ -1632,7 +1632,11 @@ var Index = function (_Component) {
 																				'div',
 																				null,
 																				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
-																				'URLS',
+																				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+																								'h3',
+																								null,
+																								'URLS'
+																				),
 																				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
 																				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 																								__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Link */],
@@ -62028,7 +62032,7 @@ var Listing = function (_Component) {
 					null,
 					' Refreshing.. '
 				) : null,
-				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				this.state.urls.length > 0 ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 					'table',
 					{ className: 'table' },
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -62119,6 +62123,10 @@ var Listing = function (_Component) {
 							);
 						})
 					)
+				) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					'div',
+					null,
+					'There are no urls yet'
 				)
 			) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Home__["a" /* default */], null);
 		}
