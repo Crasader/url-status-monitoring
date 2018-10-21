@@ -29,6 +29,9 @@
 	npm install axios
 	
 	npm run dev
-	
+    
+   
+-change api end point in the constants file in resources/js/constants.js
+
 
 project is ready to be browsed from its root point
