@@ -1,4 +1,4 @@
--install composer on you machine then run the following commands to install dependencies.
+-install composer on you machine then run the following commands to install dependencies:
 
 	composer install
 
@@ -7,20 +7,20 @@
 
 -create an empty database and edit .env file to update database info. in it (db name,db usename and password).
 
--run the following command to fill and populate database.
+-run the following command to fill and populate database:
 
 	php artisan migrate
 
--run the following command to create a client for passport (OAuth2 laravel lib).
+-run the following command to create a client for passport (OAuth2 laravel lib):
 
 	php artisan passport:client --personal
 
 
--run the following command to setup react scaffolding.
+-run the following command to setup react scaffolding:
 
 	php artisan preset react
 
--run the following commands to install npm and needed react imports then run dev env.
+-run the following commands to install npm and needed react imports:
 
 	npm install
 
@@ -28,10 +28,13 @@
 
 	npm install axios
 	
-	npm run dev
     
    
 -change api end point in the constants file in resources/js/constants.js
+
+-run development environment through the following command:
+
+    npm run dev
 
 
 project is ready to be browsed from its root point
