@@ -32,7 +32,7 @@ class UrlTest extends TestCase
         //create new url test
         $user = factory(User::class)->create();
         $this->actingAs($user, 'api');
-        $response = $this->json('POST', '/api/v1/urls',['url' => 'www.test.com', 'status' => 'online']);
+        $response = $this->json('POST', '/api/v1/urls',['url' => 'www.test.com']);
         $response
             ->assertStatus(200)
             ->assertJson([
