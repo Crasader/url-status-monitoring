@@ -16,7 +16,6 @@ class CreateUrlsTable extends Migration
         Schema::create('urls', function (Blueprint $table) {
             $table->increments('id');
             $table->string('url');
-            $table->enum('status',['online', 'offline']);
             $table->integer('user_id')->unsigned();
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
@@ -24,7 +23,7 @@ class CreateUrlsTable extends Migration
         });
 
         DB::table('urls')->insert([
-            ['url' => 'www.google.com', 'status' => 'online', 'user_id' => 1],
+            ['url' => 'www.google.com', 'user_id' => 1],
         ]);
     }
 

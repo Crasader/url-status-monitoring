@@ -13,6 +13,12 @@ class UrlController extends Controller
     public function getAllUrls(){ 
         //get loggedin user's urls then return in response
         $urls = Url::where('user_id', Auth::user()->id)->get();
+        if($urls != null)
+        {
+            foreach ($urls as $url) {
+                $url->status = $this->checkOnline($url->url)?'online':'offline';
+            }
+        }
         $success['data'] =  $urls; 
 
         return response()->json(['success' => $success], $this->successStatus());  
@@ -25,8 +31,7 @@ class UrlController extends Controller
             'url' => array(
                     'required',
                     'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/'
-            ),
-            'status' => 'required|in:online,offline',
+            )
         ]);
 
         if ($validator->fails()) { 
@@ -50,6 +55,7 @@ class UrlController extends Controller
         {
             return response()->json(['error' => 'url not found or not belongs to user'], $this->notFoundStatus());
         }
+        $url->status = $this->checkOnline($url->url)?'online':'offline';
         $success['url'] =  $url;
 
         return response()->json(['success' => $success], $this->successStatus());
@@ -78,8 +84,7 @@ class UrlController extends Controller
         $validator = Validator::make($request->all(), [ 
             'url' => array(
                     'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/'
-            ),
-            'status' => 'in:online,offline',
+            )
         ]);
 
         if ($validator->fails()) { 
@@ -96,5 +101,20 @@ class UrlController extends Controller
         }
 
         return response()->json(['error'=>'url not found or not belongs to user'], $this->notFoundStatus());
+    }
+
+    private function checkOnline($domain) {
+       $curlInit = curl_init($domain);
+       curl_setopt($curlInit,CURLOPT_CONNECTTIMEOUT,10);
+       curl_setopt($curlInit,CURLOPT_HEADER,true);
+       curl_setopt($curlInit,CURLOPT_NOBODY,true);
+       curl_setopt($curlInit,CURLOPT_RETURNTRANSFER,true);
+
+       //get answer
+       $response = curl_exec($curlInit);
+
+       curl_close($curlInit);
+       if ($response) return true;
+       return false;
     }
 }

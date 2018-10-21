@@ -13,13 +13,11 @@ export default class Edit extends Component {
 		super(props);
 
 		this.onChangeUrl = this.onChangeUrl.bind(this);
-		this.onChangeStatus = this.onChangeStatus.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 
 		//initialize states
 		this.state = {
 			url : '',
-			status : '',
 			message : '',
 			errors : ''
 		}
@@ -38,7 +36,6 @@ export default class Edit extends Component {
 						}).then(response => {
 							//console.log(response.data.success.url);
 						this.setState({url:response.data.success.url.url});
-						this.setState({status:response.data.success.url.status});
 			});
 		}
 	}
@@ -51,22 +48,13 @@ export default class Edit extends Component {
 
 	}
 
-	onChangeStatus(e)
-	{
-		this.setState({
-			status: e.target.value
-		});
-
-	}
-
 	onSubmit(e)
 	{
 		if(localStorage.getItem('token') !== null)
 		{
 			e.preventDefault();
 			const url_data = {
-				url : this.state.url,
-				status : this.state.status
+				url : this.state.url
 			}
 
 			var accessToken = localStorage.getItem('token');
@@ -116,12 +104,6 @@ export default class Edit extends Component {
 						    <label htmlFor="url">URL</label>
 						    <input type="text" className="form-control" id="url" 
 						    	value={this.state.url} onChange={this.onChangeUrl}  placeholder="Enter url"/>
-						    <label htmlFor="status">Status</label>
-						    <select className="form-control" id="status" value={this.state.status} onChange={this.onChangeStatus}>
-						      <option>Select Status</option>
-						      <option value="online">Online</option>
-						      <option value="offline">Offline</option>
-						    </select>
 						  </div>
 						  <button type="submit" className="btn btn-primary">Submit</button>
 						</form>

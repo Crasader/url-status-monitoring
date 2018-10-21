@@ -61586,13 +61586,11 @@ var Add = function (_Component) {
 		var _this = _possibleConstructorReturn(this, (Add.__proto__ || Object.getPrototypeOf(Add)).call(this));
 
 		_this.onChangeUrl = _this.onChangeUrl.bind(_this);
-		_this.onChangeStatus = _this.onChangeStatus.bind(_this);
 		_this.onSubmit = _this.onSubmit.bind(_this);
 
 		//initialize states
 		_this.state = {
 			url: '',
-			status: '',
 			message: '',
 			errors: ''
 		};
@@ -61607,13 +61605,6 @@ var Add = function (_Component) {
 			});
 		}
 	}, {
-		key: 'onChangeStatus',
-		value: function onChangeStatus(e) {
-			this.setState({
-				status: e.target.value
-			});
-		}
-	}, {
 		key: 'onSubmit',
 		value: function onSubmit(e) {
 			var _this2 = this;
@@ -61621,8 +61612,7 @@ var Add = function (_Component) {
 			if (localStorage.getItem('token') !== null) {
 				e.preventDefault();
 				var url_data = {
-					url: this.state.url,
-					status: this.state.status
+					url: this.state.url
 				};
 
 				var accessToken = localStorage.getItem('token');
@@ -61675,31 +61665,7 @@ var Add = function (_Component) {
 							'URL'
 						),
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', id: 'url',
-							value: this.state.url, onChange: this.onChangeUrl, placeholder: 'Enter url' }),
-						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-							'label',
-							{ htmlFor: 'status' },
-							'Status'
-						),
-						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-							'select',
-							{ className: 'form-control', id: 'status', value: this.state.status, onChange: this.onChangeStatus },
-							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-								'option',
-								null,
-								'Select Status'
-							),
-							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-								'option',
-								{ value: 'online' },
-								'Online'
-							),
-							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-								'option',
-								{ value: 'offline' },
-								'Offline'
-							)
-						)
+							value: this.state.url, onChange: this.onChangeUrl, placeholder: 'Enter url' })
 					),
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 						'button',
@@ -61753,13 +61719,11 @@ var Edit = function (_Component) {
 		var _this = _possibleConstructorReturn(this, (Edit.__proto__ || Object.getPrototypeOf(Edit)).call(this, props));
 
 		_this.onChangeUrl = _this.onChangeUrl.bind(_this);
-		_this.onChangeStatus = _this.onChangeStatus.bind(_this);
 		_this.onSubmit = _this.onSubmit.bind(_this);
 
 		//initialize states
 		_this.state = {
 			url: '',
-			status: '',
 			message: '',
 			errors: ''
 		};
@@ -61781,7 +61745,6 @@ var Edit = function (_Component) {
 				}).then(function (response) {
 					//console.log(response.data.success.url);
 					_this2.setState({ url: response.data.success.url.url });
-					_this2.setState({ status: response.data.success.url.status });
 				});
 			}
 		}
@@ -61793,13 +61756,6 @@ var Edit = function (_Component) {
 			});
 		}
 	}, {
-		key: 'onChangeStatus',
-		value: function onChangeStatus(e) {
-			this.setState({
-				status: e.target.value
-			});
-		}
-	}, {
 		key: 'onSubmit',
 		value: function onSubmit(e) {
 			var _this3 = this;
@@ -61807,8 +61763,7 @@ var Edit = function (_Component) {
 			if (localStorage.getItem('token') !== null) {
 				e.preventDefault();
 				var url_data = {
-					url: this.state.url,
-					status: this.state.status
+					url: this.state.url
 				};
 
 				var accessToken = localStorage.getItem('token');
@@ -61863,31 +61818,7 @@ var Edit = function (_Component) {
 							'URL'
 						),
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', id: 'url',
-							value: this.state.url, onChange: this.onChangeUrl, placeholder: 'Enter url' }),
-						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-							'label',
-							{ htmlFor: 'status' },
-							'Status'
-						),
-						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-							'select',
-							{ className: 'form-control', id: 'status', value: this.state.status, onChange: this.onChangeStatus },
-							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-								'option',
-								null,
-								'Select Status'
-							),
-							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-								'option',
-								{ value: 'online' },
-								'Online'
-							),
-							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-								'option',
-								{ value: 'offline' },
-								'Offline'
-							)
-						)
+							value: this.state.url, onChange: this.onChangeUrl, placeholder: 'Enter url' })
 					),
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 						'button',
@@ -61944,7 +61875,6 @@ var Listing = function (_Component) {
 
 		_this2.state = {
 			urls: [],
-			authenticated: false,
 			message: '',
 			toggleMessage: false
 		};
@@ -61973,7 +61903,7 @@ var Listing = function (_Component) {
 					_this.setState({ toggleMessage: true });
 					setTimeout(function () {
 						_this.setState({ toggleMessage: false });
-					}, 2000);
+					}, 1500);
 					return __WEBPACK_IMPORTED_MODULE_2_axios___default()({
 						method: 'get', url: __WEBPACK_IMPORTED_MODULE_6__constants__["a" /* API_END_POINT */] + 'urls',
 						headers: { 'Authorization': 'Bearer ' + accessToken }
@@ -62032,7 +61962,7 @@ var Listing = function (_Component) {
 					null,
 					' Refreshing.. '
 				) : null,
-				this.state.urls.length > 0 ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 					'table',
 					{ className: 'table' },
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -62123,10 +62053,6 @@ var Listing = function (_Component) {
 							);
 						})
 					)
-				) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-					'div',
-					null,
-					'There are no urls yet'
 				)
 			) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Home__["a" /* default */], null);
 		}
