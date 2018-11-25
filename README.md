@@ -1,4 +1,4 @@
--install composer on you machine then run the following commands to install dependencies:
+-install composer on your machine then run the following commands to install dependencies:
 
 	composer install
 
